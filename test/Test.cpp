@@ -6,6 +6,7 @@
 #include "TopologicalSort.h"
 #include "Kruskal.h"
 #include "Dijkstra.h"
+#include "LagestRectangularAreaInHistogram.h"
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -160,4 +161,12 @@ TEST(Algorithms, Dijkstra)
     ASSERT_EQ(std::vector<int>({1, 2, 3}), dijkstra.ShortestPath(3));
     ASSERT_EQ(std::vector<int>({1, 2, 8}), dijkstra.ShortestPath(8));
     ASSERT_EQ(std::vector<int>({7, 6, 5, 4}), dijkstra.ShortestPath(4));
+}
+
+TEST(Algorithms, LagestRectangularAreaInHistogram)
+{
+    ASSERT_EQ(12, LagestRectangularAreaInHistogram({6, 2, 5, 4, 5, 1, 6}));
+    ASSERT_EQ(4, LagestRectangularAreaInHistogram({1, 2, 3}));
+    ASSERT_EQ(4, LagestRectangularAreaInHistogram({3, 2, 1}));
+    ASSERT_EQ(3, LagestRectangularAreaInHistogram({3, 1, 2}));
 }
