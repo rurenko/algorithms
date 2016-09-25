@@ -4,6 +4,7 @@
 #include "BFS.h"
 #include "DFS.h"
 #include "TopologicalSort.h"
+#include "Kruskal.h"
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -93,4 +94,36 @@ TEST(Algorithms, TopologicalSort)
     }; 
     
     ASSERT_EQ(std::vector<int>({5,4,2,3,1,0}), TopologicalSort::Sort(6, g));
+}
+
+TEST(Algorithms, Kruskal)
+{
+    std::vector<std::pair<int, std::pair<int,int> > > g = {
+        {4, {0, 1}},
+        {8, {0, 7}},
+        {11, {1, 7}},
+        {8, {1, 2}},
+        {7, {7, 8}},
+        {1, {6, 7}},
+        {2, {2, 8}},
+        {6, {6, 8}},
+        {7, {2, 3}},
+        {4, {2, 5}},
+        {2, {5, 6}},
+        {14, {3, 5}},
+        {9, {3, 4}},
+        {10, {4, 5}}
+    };
+    
+    std::vector<std::pair<int, int> > mst = {
+        {6, 7},
+        {2, 8},
+        {5, 6},
+        {0, 1},
+        {2, 5},
+        {2, 3},
+        {0, 7},
+        {3, 4} };
+    
+    ASSERT_EQ(mst, Kruskal::MinimumSpanningTree(9, g));
 }
