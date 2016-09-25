@@ -5,6 +5,7 @@
 #include "DFS.h"
 #include "TopologicalSort.h"
 #include "Kruskal.h"
+#include "Dijkstra.h"
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -126,4 +127,37 @@ TEST(Algorithms, Kruskal)
         {3, 4} };
     
     ASSERT_EQ(mst, Kruskal::MinimumSpanningTree(9, g));
+}
+
+TEST(Algorithms, Dijkstra)
+{
+    std::vector<std::vector<std::pair<int,int> > > g = {
+        {{1, 4}, {7, 8}},
+        {{0, 4}, {7, 11}, {2, 8}},
+        {{1, 8}, {8, 2}, {5, 4}, {3, 7}},
+        {{2, 7}, {5, 14}, {4, 9}},
+        {{3, 9}, {5, 10}},
+        {{6, 2}, {2, 4}, {3, 14}, {4, 10}},
+        {{7, 1}, {8, 6}, {5, 2}},
+        {{0, 8}, {1, 11}, {8,7}, {6, 1}},
+        {{2, 2}, {6, 6}, {7,7}}
+    };
+    
+    Dijkstra dijkstra(9, g);
+    dijkstra.Start(0);
+    
+    ASSERT_EQ(0, dijkstra.Distance(0));
+    ASSERT_EQ(4, dijkstra.Distance(1));
+    ASSERT_EQ(12, dijkstra.Distance(2));
+    ASSERT_EQ(19, dijkstra.Distance(3));
+    ASSERT_EQ(21, dijkstra.Distance(4));
+    ASSERT_EQ(11, dijkstra.Distance(5));
+    ASSERT_EQ(9, dijkstra.Distance(6));
+    ASSERT_EQ(8, dijkstra.Distance(7));
+    ASSERT_EQ(14, dijkstra.Distance(8));
+    
+    ASSERT_EQ(std::vector<int>({}), dijkstra.ShortestPath(0));
+    ASSERT_EQ(std::vector<int>({1, 2, 3}), dijkstra.ShortestPath(3));
+    ASSERT_EQ(std::vector<int>({1, 2, 8}), dijkstra.ShortestPath(8));
+    ASSERT_EQ(std::vector<int>({7, 6, 5, 4}), dijkstra.ShortestPath(4));
 }
