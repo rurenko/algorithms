@@ -3,6 +3,7 @@
 #include "BinarySearch.h"
 #include "BFS.h"
 #include "DFS.h"
+#include "TopologicalSort.h"
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -78,4 +79,18 @@ TEST(Algorithms, DFS)
     ASSERT_EQ(std::vector<int>({2,1,0,3,4,5,6,7}), DFS::dfs(2, 8, g));
     ASSERT_EQ(std::vector<int>({4,3,2,1,0,5,6,7}), DFS::dfs(4, 8, g));
     ASSERT_EQ(std::vector<int>({7,5,3,2,1,0,4,6}), DFS::dfs(7, 8, g));
+}
+
+TEST(Algorithms, TopologicalSort)
+{
+    std::vector<std::vector<int>> g = {
+        {},
+        {},
+        {3},
+        {1},
+        {0, 1},
+        {0, 2}
+    }; 
+    
+    ASSERT_EQ(std::vector<int>({5,4,2,3,1,0}), TopologicalSort::Sort(6, g));
 }
