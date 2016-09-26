@@ -7,6 +7,7 @@
 #include "Kruskal.h"
 #include "Dijkstra.h"
 #include "LagestRectangularAreaInHistogram.h"
+#include "KMP.h"
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -169,4 +170,14 @@ TEST(Algorithms, LagestRectangularAreaInHistogram)
     ASSERT_EQ(4, LagestRectangularAreaInHistogram({1, 2, 3}));
     ASSERT_EQ(4, LagestRectangularAreaInHistogram({3, 2, 1}));
     ASSERT_EQ(3, LagestRectangularAreaInHistogram({3, 1, 2}));
+}
+
+TEST(Algorithms, KMP)
+{
+    ASSERT_EQ(std::vector<int>({0,1,0,1,2,3,4,5,2}), prefSuff("aabaabaaa"));
+    ASSERT_EQ(std::vector<int>({}), kmp("AAAAAAA", "AAAB"));
+    ASSERT_EQ(std::vector<int>({0}), kmp("THIS IS A TEST TEXT", "THIS"));
+    ASSERT_EQ(std::vector<int>({10}), kmp("THIS IS A TEST TEXT", "TEST"));
+    ASSERT_EQ(std::vector<int>({15}), kmp("THIS IS A TEST TEXT", "TEXT"));
+    ASSERT_EQ(std::vector<int>({0, 9, 13}), kmp("AABAACAADAABAAABAA", "AABA"));
 }
