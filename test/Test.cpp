@@ -8,6 +8,7 @@
 #include "Dijkstra.h"
 #include "LagestRectangularAreaInHistogram.h"
 #include "KMP.h"
+#include <RevertLinkedList.h>
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -180,4 +181,14 @@ TEST(Algorithms, KMP)
     ASSERT_EQ(std::vector<int>({10}), kmp("THIS IS A TEST TEXT", "TEST"));
     ASSERT_EQ(std::vector<int>({15}), kmp("THIS IS A TEST TEXT", "TEXT"));
     ASSERT_EQ(std::vector<int>({0, 9, 13}), kmp("AABAACAADAABAAABAA", "AABA"));
+}
+
+TEST(Algorithms, RevertLinkedList)
+{
+    Seq head;
+    head.value = 1;
+    head.AddNext(2)->AddNext(3)->AddNext(4)->AddNext(5)->AddNext(6);
+    ASSERT_EQ(std::string("1->2->3->4->5->6"), &head);
+    Seq* rhead = RevertLinkedList(&head);
+    ASSERT_EQ(std::string("6->5->4->3->2->1"), rhead);
 }
