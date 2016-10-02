@@ -1,4 +1,4 @@
-#include <RevertLinkedList.h>
+#include "RevertLinkedList.h"
 
 #include <sstream>
 
@@ -32,6 +32,5 @@ std::string PrintLinkedList(Seq* head)
 			os << "->";
 		head = head->Next;
 	}
-	os << "\n";
 	return os.str();
 }

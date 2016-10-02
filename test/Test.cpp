@@ -8,7 +8,7 @@
 #include "Dijkstra.h"
 #include "LagestRectangularAreaInHistogram.h"
 #include "KMP.h"
-#include <RevertLinkedList.h>
+#include "RevertLinkedList.h"
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -188,7 +188,7 @@ TEST(Algorithms, RevertLinkedList)
     Seq head;
     head.value = 1;
     head.AddNext(2)->AddNext(3)->AddNext(4)->AddNext(5)->AddNext(6);
-    ASSERT_EQ(std::string("1->2->3->4->5->6"), &head);
+    ASSERT_EQ(std::string("1->2->3->4->5->6"), PrintLinkedList(&head));
     Seq* rhead = RevertLinkedList(&head);
-    ASSERT_EQ(std::string("6->5->4->3->2->1"), rhead);
+    ASSERT_EQ(std::string("6->5->4->3->2->1"), PrintLinkedList(rhead));
 }
