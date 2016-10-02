@@ -13,6 +13,7 @@
 #include "Eratosthen.h"
 #include "SumLinkedList.h"
 #include "BirthdayParadox.h"
+#include "Fibonacci.h"
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -247,4 +248,17 @@ TEST(Algorithms, SumLinkedList)
 TEST(Algorithms, BirthdayParadox)
 {
     ASSERT_GT(TwoPeopleWithSameBirthdayProbability(23), 0.5);
+}
+
+TEST(Algorithms, Fibonacci)
+{
+    ASSERT_EQ(0, Fibonacci(0));
+    ASSERT_EQ(1, Fibonacci(1));
+    ASSERT_EQ(1, Fibonacci(2));
+    ASSERT_EQ(2, Fibonacci(3));
+    ASSERT_EQ(3, Fibonacci(4));
+    ASSERT_EQ(5, Fibonacci(5));
+    ASSERT_EQ(34, Fibonacci(9));
+    ASSERT_EQ(4181, Fibonacci(19));
+    ASSERT_EQ(5702887, Fibonacci(34));
 }
