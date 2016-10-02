@@ -9,6 +9,10 @@
 #include "LagestRectangularAreaInHistogram.h"
 #include "KMP.h"
 #include "RevertLinkedList.h"
+#include "Euclid.h"
+#include "Eratosthen.h"
+#include "SumLinkedList.h"
+#include "BirthdayParadox.h"
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -191,4 +195,56 @@ TEST(Algorithms, RevertLinkedList)
     ASSERT_EQ(std::string("1->2->3->4->5->6"), PrintLinkedList(&head));
     Seq* rhead = RevertLinkedList(&head);
     ASSERT_EQ(std::string("6->5->4->3->2->1"), PrintLinkedList(rhead));
+}
+
+
+TEST(Algorithms, Euclid)
+{
+    ASSERT_EQ(25, Euclid(225, 800));
+    ASSERT_EQ(1, Euclid(13, 7));
+    ASSERT_EQ(9, Euclid(81, 36));
+    ASSERT_EQ(100, Euclid(200, 500));
+}
+
+TEST(Algorithms, ExtendedEuclid)
+{
+    int d, x, y;
+    int a = 81, b = 36;
+    ExtendedEuclid(a, b, d, x, y);
+    ASSERT_EQ(9, d);
+    ASSERT_EQ(a * x + b * y, d);
+    ASSERT_EQ(1, x);
+    ASSERT_EQ(-2, y);
+}
+
+TEST(Algorithms, LeastCommonMultiplier)
+{
+    ASSERT_EQ(324, LeastCommonMultiplier(81, 36));
+}
+
+TEST(Algorithms, Eratosthen)
+{
+    ASSERT_EQ(std::vector<int>({2,3,5,7,11,13,17,19,23,29,31,37,41,
+            43,47,53,59,61,67,71,73,79,83,89,97}), Eratosthen(100));
+}
+
+TEST(Algorithms, SumLinkedList)
+{
+    Seq first;
+    first.value = 1;
+    first.AddNext(0)->AddNext(9)->AddNext(4)->AddNext(6)->AddNext(2);
+    Seq second;
+    second.value = 8;
+    second.AddNext(5)->AddNext(9);
+    ASSERT_EQ(6, first.Size());
+    ASSERT_EQ(3, second.Size());
+
+    Seq* sum;
+    sum = SumTwoList(&first, &second);
+    ASSERT_EQ(std::string("1->1->0->3->2->1"), PrintLinkedList(sum));
+}
+
+TEST(Algorithms, BirthdayParadox)
+{
+    ASSERT_GT(TwoPeopleWithSameBirthdayProbability(23), 0.5);
 }
