@@ -14,6 +14,7 @@
 #include "SumLinkedList.h"
 #include "BirthdayParadox.h"
 #include "Fibonacci.h"
+#include "BellmanFord.h"
 #include "gtest/gtest.h"
 
 #include <vector>
@@ -261,4 +262,19 @@ TEST(Algorithms, Fibonacci)
     ASSERT_EQ(34, Fibonacci(9));
     ASSERT_EQ(4181, Fibonacci(19));
     ASSERT_EQ(5702887, Fibonacci(34));
+}
+
+TEST(Algorithms, BellmanFord)
+{
+    std::vector<Edge> g = {
+        {0, 1, -1},
+        {1, 2, 3},
+        {0, 2, 4},
+        {3, 2, 5},
+        {1, 3, 2},
+        {3, 1, 1},
+        {1, 4, 2},
+        {4, 3, -3}
+    };
+    ASSERT_EQ(std::vector<int>({0, -1, 2, -2, 1}), BellmanFord(g, 5, 0));
 }
